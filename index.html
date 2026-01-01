@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-</html>
 <body>
-    <form id="todoForm"> 
-        <input type="text" placeholder="add new Task" id = "taskInput" /> 
-    <button type="submit">Add</button>
-    <ul id="taskList"></ul>
+    <form id="todoForm">
+        <input type="text" placeholder="add new Task" id="taskInput" />
+        <button type="submit">Add</button>
+
+        <ul id="taskList"></ul>
     </form>
 
     <script>
-        let form = document.getElementById('todoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const taskInput = document.getElementById('taskInput');
-            const taskList = document.getElementById('taskList');
-            const newTask = document.createElement('li');
-            newTask.textContent = taskInput.value;
-            taskList.appendChild(newTask);
-            taskInput.value = '';
+        let form = document.getElementById("todoForm");
+        let taskInput = document.getElementById("taskInput");
+        let taskList = document.getElementById("taskList");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            let taskText = taskInput.value.trim();
+            if (taskText === "") return;
+            let li = document.createElement("li");
+            li.textContent = taskText;
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+            deleteButton.addEventListener("click", () => {
+                taskList.removeChild(li);
+            });
+            taskInput.value = "";
         });
     </script>
 
 </body>
+
+</html>
