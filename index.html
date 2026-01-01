@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+</html>
+<body>
+    <form id="todoForm"> 
+        <input type="text" placeholder="add new Task" id = "taskInput" /> 
+    <button type="submit">Add</button>
+    <ul id="taskList"></ul>
+    </form>
+
+    <script>
+        let form = document.getElementById('todoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+            const newTask = document.createElement('li');
+            newTask.textContent = taskInput.value;
+            taskList.appendChild(newTask);
+            taskInput.value = '';
+        });
+    </script>
+
+</body>
